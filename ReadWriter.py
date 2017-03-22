@@ -11,7 +11,7 @@ def file_to_dict(filename):
         data = read_csv(filename)
     elif filename[-5:] == '.xlsx' or filename[-4:] == '.xls':
         data = read_xl(filename)
-    elif filename[-4:] == '.txt'
+    elif filename[-4:] == '.txt':
         data = read_txt(filename)
     else:
         print('error')
@@ -69,24 +69,25 @@ def read_xl(filename):
 
     return data
 
-def read_txt_by_line(filename)
+def read_txt_by_line(filename):
 
     data = {}
     with open(root_path + filename, 'r'):
         i = 0
-        while (line = f.readline()):
+        while line:
+            line = f.readline()
             data[i] = line
             i += 1
     return data            
 
-def read_txt(filename)
+def read_txt(filename):
 
     data = {}
     with open(root_path + filename, 'r'):
         data['data'] = f.read()
         data['filename'] = filename
     return data            
-'''
+
 def write_to_db(data, client_name, file_id, db_object):
     ''' write data extracted to database(sqlite) '''
     #ques_paper=quesFile.objects.get(ques_paper_id=filename, client=client_name)
@@ -103,13 +104,13 @@ def write_to_db(data, client_name, file_id, db_object):
             answer=data[i].get(6),
             questionType=data[i].get(7),
         )
-'''
-def write_to_out(data, client_name, file_id)
+
+def write_to_out(data, client_name, file_id):
     ''' write data extracted to output data '''
     for i in data:
         if str(i) == 'filename':
             break
-        print(data[file_id,
+        print(file_id,
             data[i].get(1),
             data[i].get(2),
             data[i].get(3),
@@ -119,6 +120,3 @@ def write_to_out(data, client_name, file_id)
             data[i].get(7),
         )
         
-if __name__ == '__main__'
-    file_to_db('quesformat1.xlsx','yoyo')
-
